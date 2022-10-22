@@ -1,9 +1,17 @@
 require("dotenv").config();
 const users = require("./routes/users.js");
 const express = require("express");
-
+const session = require("express-session");
 const app = express();
 const PORT = process.env.PORT || 4000;
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
 // for parsing application/json
 app.use(express.json());
