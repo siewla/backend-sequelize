@@ -35,7 +35,8 @@ router.post("/login", async (req, res) => {
       res.status(404).json({ message: "incorrect password" });
       return;
     }
-    req.session.user = user.email;
+    req.session.email = user.email;
+    console.log(req.session);
     res.status(200).json({ message: "user is authenciated" });
   } catch (err) {
     res.status(400).json(err.message);
@@ -44,12 +45,12 @@ router.post("/login", async (req, res) => {
 
 router.get("/checksession", async (req, res) => {
   if (req.session.email) {
-    const user = await user.findOne({
+    const user = await db.user.findOne({
       where: {
-        email: email,
+        email: req.session.email,
       },
     });
-    res.status(200).json({ message: "session is active" });
+    res.status(200).json({ message: "session is active", user });
   } else {
     res.status(404).json({ message: "session not existed" });
   }

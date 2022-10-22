@@ -2,6 +2,7 @@ require("dotenv").config();
 const users = require("./routes/users.js");
 const express = require("express");
 const session = require("express-session");
+const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -10,6 +11,14 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
+  })
+);
+
+app.use(
+  cors({
+    origin: process.env.FRONT_END_URL || "http://localhost:3000",
+    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+    credentials: true,
   })
 );
 
