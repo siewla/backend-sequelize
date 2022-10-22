@@ -12,9 +12,9 @@ router.post("/register", async (req, res) => {
       email,
       password,
     });
-    res.status(200).json(user);
+    res.status(200).json({ message: "user is created", user });
   } catch (err) {
-    res.status(400).json(err.message);
+    res.status(400).json({ message: err.message });
   }
 });
 
@@ -39,7 +39,7 @@ router.post("/login", async (req, res) => {
     console.log(req.session);
     res.status(200).json({ message: "user is authenciated" });
   } catch (err) {
-    res.status(400).json(err.message);
+    res.status(400).json({ message: err.message });
   }
 });
 
