@@ -5,9 +5,19 @@ const path = require("path");
 const Sequelize = require("sequelize");
 const process = require("process");
 const basename = path.basename(__filename);
-const config = require(__dirname + "/../config/config.js");
+// const config = require(__dirname + "/../config/config.js");
+
+const config = {
+  database: process.env.DB_NAME,
+  host: process.env.DB_HOST,
+  dialect: process.env.DB_DIALECT,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+};
 
 const db = {};
+
+// const sequelize = new Sequelize("postgres://kmdiqswz:TRTtga43sljcErHZL7P5cieUyfdNrWBj@satao.db.elephantsql.com/kmdiqswz")
 
 let sequelize;
 if (config.use_env_variable) {
