@@ -43,7 +43,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/checksession", async (req, res) => {
-  if (req.session.email) {
+  if (req?.session?.email) {
     const user = await db.user.findOne({
       where: {
         email: req.session.email,
