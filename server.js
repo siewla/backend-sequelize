@@ -8,13 +8,13 @@ const PORT = process.env.PORT || 4000;
 const cookieParser = require("cookie-parser");
 
 app.use(cookieParser());
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET,
+//     resave: true,
+//     saveUninitialized: true,
+//   })
+// );
 
 app.use(
   cors({

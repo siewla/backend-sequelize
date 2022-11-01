@@ -35,7 +35,7 @@ router.post("/login", async (req, res) => {
       res.status(404).json({ message: "incorrect password" });
       return;
     }
-    req.session.email = user.email;
+    // req.session.email = user.email;
     res.cookie("token", "asdfghjkl").status(200).json({ message: "user is authenciated" });
   } catch (err) {
     res.status(400).json({ message: err.message });
