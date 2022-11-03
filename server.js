@@ -8,17 +8,20 @@ const PORT = process.env.PORT || 4000;
 const cookieParser = require("cookie-parser");
 
 app.use(cookieParser());
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-      sameSite: "none",
-      secure: true,
-    },
-  })
-);
+
+const sessionConfig = {
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    secure: true,
+    sameSite: "none",
+  },
+};
+
+app.use(session(sessionConfig));
+
+app.set("trust proxy", 1);
 
 app.use(
   cors({
