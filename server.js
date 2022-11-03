@@ -6,6 +6,7 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 4000;
 const cookieParser = require("cookie-parser");
+const MemoryStore = require("memorystore")(session);
 
 app.use(cookieParser());
 
@@ -27,6 +28,9 @@ app.use(
   cors({
     origin: process.env.FRONT_END_URL || "http://localhost:3000",
     credentials: true,
+    store: new MemoryStore({
+      checkPeriod: 86400000, // prune expired entries every 24h
+    }),
     cookie: {
       sameSite: "none",
       secure: true,
