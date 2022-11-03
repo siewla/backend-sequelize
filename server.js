@@ -8,7 +8,6 @@ const PORT = process.env.PORT || 4000;
 const cookieParser = require("cookie-parser");
 const MemoryStore = require("memorystore")(session);
 
-app.use(cookieParser());
 
 const sessionConfig = {
   secret: process.env.SESSION_SECRET,
@@ -24,8 +23,8 @@ const sessionConfig = {
 };
 
 app.use(session(sessionConfig));
-
 app.set("trust proxy", 1);
+app.use(cookieParser());
 
 app.use(
   cors({
