@@ -8,7 +8,6 @@ const PORT = process.env.PORT || 4000;
 const cookieParser = require("cookie-parser");
 const MemoryStore = require("memorystore")(session);
 
-
 const sessionConfig = {
   secret: process.env.SESSION_SECRET,
   resave: true,
@@ -30,6 +29,8 @@ app.use(
   cors({
     origin: process.env.FRONT_END_URL || "http://localhost:3000",
     credentials: true,
+    preflightContinue: false,
+    exposedHeaders: ["set-cookie"],
   })
 );
 

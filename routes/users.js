@@ -41,7 +41,6 @@ router.post("/login", async (req, res) => {
       .cookie("token", "asdfghjkl", {
         sameSite: "none",
         secure: true,
-        path: "/",
       })
       .status(200)
       .json({ message: "user is authenciated" });
