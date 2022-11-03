@@ -14,6 +14,9 @@ const sessionConfig = {
   secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
+  store: new MemoryStore({
+    checkPeriod: 86400000, // prune expired entries every 24h
+  }),
   cookie: {
     secure: true,
     sameSite: "none",
@@ -28,13 +31,6 @@ app.use(
   cors({
     origin: process.env.FRONT_END_URL || "http://localhost:3000",
     credentials: true,
-    store: new MemoryStore({
-      checkPeriod: 86400000, // prune expired entries every 24h
-    }),
-    cookie: {
-      sameSite: "none",
-      secure: true,
-    },
   })
 );
 
