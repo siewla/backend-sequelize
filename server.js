@@ -21,6 +21,7 @@ app.use(
     origin: process.env.FRONT_END_URL || "http://localhost:3000",
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
     credentials: true,
+    exposedHeaders: ["set-cookie"],
   })
 );
 
