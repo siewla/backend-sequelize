@@ -36,13 +36,7 @@ router.post("/login", async (req, res) => {
       return;
     }
     // req.session.email = user.email;
-    res
-      .cookie("token", "asdfghjkl", {
-        sameSite: "none",
-        secure: true,
-      })
-      .status(200)
-      .json({ message: "user is authenciated" });
+    res.cookie("token", "asdfghjkl").status(200).json({ message: "user is authenciated" });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
