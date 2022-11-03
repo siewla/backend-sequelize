@@ -16,10 +16,14 @@ app.use(cookieParser());
 //   })
 // );
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  next();
+});
+
 app.use(
   cors({
     origin: process.env.FRONT_END_URL || "http://localhost:3000",
-    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
     credentials: true,
     exposedHeaders: ["set-cookie"],
   })
