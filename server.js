@@ -13,6 +13,10 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
+    cookie: {
+      sameSite: "none",
+      secure: true,
+    },
   })
 );
 
@@ -20,7 +24,10 @@ app.use(
   cors({
     origin: process.env.FRONT_END_URL || "http://localhost:3000",
     credentials: true,
-    maxAge: 3600,
+    cookie: {
+      sameSite: "none",
+      secure: true,
+    },
   })
 );
 
