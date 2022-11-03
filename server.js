@@ -31,6 +31,10 @@ app.use(
     credentials: true,
     preflightContinue: false,
     exposedHeaders: ["set-cookie"],
+    cookie: {
+      sameSite: "none",
+      secure: true,
+    },
   })
 );
 
