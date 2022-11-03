@@ -36,6 +36,7 @@ router.post("/login", async (req, res) => {
       return;
     }
     req.session.email = user.email;
+    console.log("req.session.email", req?.session?.email);
     res
       .cookie("token", "asdfghjkl", {
         sameSite: "none",
@@ -49,6 +50,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/checksession", async (req, res) => {
+  console.log("req.session.email", req?.session?.email);
   if (req?.session?.email) {
     const user = await db.user.findOne({
       where: {
